@@ -1,120 +1,170 @@
-# doom-emacs-tutorial
+# Doom Chronicles
 
-# Doom Chronicles - Phase 1: The Spark ✨
+![Status](https://img.shields.io/badge/Status-Phase%201-green)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-**An interactive tutorial game to master DOOM Emacs on NixOS, built on cognitive science principles.**
-
-Progressive difficulty 0 to hero interactive game within Doom Emacs
-
-[![Status](https://img.shields.io/badge/Status-Phase%201%20Alpha-orange)](https://github.com/your-username/doom-chronicles) <!-- Replace your-username -->
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+**An interactive tutorial game for mastering DOOM Emacs, built on cognitive science principles.**
 
 ## Vision
 
-Doom Chronicles aims to be the definitive, most engaging, and effective interactive learning experience for mastering DOOM Emacs, particularly within a NixOS environment. Forget dry manuals; learn by *doing* in an adventure designed to make learning addictive, leveraging principles like dopamine rewards, spaced repetition, flow state, and active recall.
+Doom Chronicles provides the most engaging and effective interactive learning experience for mastering DOOM Emacs. Rather than reading dry manuals, you'll *learn by doing* in a carefully designed adventure that makes learning feel natural and addictive, leveraging principles of flow state, spaced repetition, and immediate feedback.
 
-## 🔥 Current Status: Phase 1 - The Spark (Early Alpha) 🔥
+## Learning Path
 
-This repository currently contains **Phase 1** of Doom Chronicles. It is a **minimal viable product** focused *only* on the absolute core mechanics to get you started and address the most common initial frustrations.
+```
+                    ┌─────────────────┐
+                    │   Phase 1       │
+                    │   The Spark     │ 
+                    │                 │
+                    │ • Modal editing │
+                    │ • Basic movement│
+                    │ • Leader key    │
+                    └────────┬────────┘
+                             │
+                             ▼
+┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
+│    Phase 2      │   │    Phase 3      │   │    Phase 4      │
+│  Buffer Mastery │   │  Text Mastery   │   │Knowledge Systems│
+│                 │◄─►│                 │◄─►│                 │
+│• Buffer/windows │   │• Text objects   │   │• Org mode       │
+│• File navigation│   │• Registers      │   │• Notes & capture│
+│• Projects       │   │• Macros         │   │• Tags & links   │
+└────────┬────────┘   └────────┬────────┘   └────────┬────────┘
+         │                     │                     │
+         │                     ▼                     │
+         │            ┌─────────────────┐            │
+         └────────────►   Phase 5      │◄────────────┘
+                      │ Dev Environment │
+                      │                 │
+                      │• Magit          │
+                      │• Completion     │
+                      │• Projects       │
+                      └─────────────────┘
+```
 
-**What Phase 1 Covers:**
+## Current Status: Phase 1 - The Spark 🔥
 
-*   ✅ **Modal Mastery:** Confidently switching between Normal, Insert, and Visual modes. Clear mode indication!
-*   ✅ **Fundamental Movement:** `h j k l` navigation.
-*   ✅ **Basic Editing:** `x`, `d`, `c`, `y`, `p`, `u`.
-*   ✅ **The Leader Key:** Introducing `SPC` and the `which-key` menu.
-*   ✅ **Core Feedback Loop:** Instant validation and clear feedback for your actions.
-*   ❌ **NOT YET IMPLEMENTED:** Window/buffer management, file finding, Magit, NixOS config, Org mode, Spaced Repetition System (SRS), full gamification, etc. (These are planned for future phases!)
+This release contains **Phase 1** of Doom Chronicles, focused on building core mechanics and foundations:
 
-## Why This Approach?
+**What Phase 1 Teaches:**
 
-Learning Emacs, especially DOOM Emacs, has a notoriously steep initial learning curve. Key frustrations include modal confusion, keybinding overload, and discovering essential commands. Doom Chronicles tackles these head-on through:
+* ✅ **Modal Mastery:** Confidently switching between Normal, Insert, and Visual modes
+* ✅ **Movement Fundamentals:** From basic `hjkl` to efficient word-based and line navigation
+* ✅ **Text Manipulation:** Quick edits with `x`, `d`, `dd`, and `u`
+* ✅ **Leader Key Introduction:** Understanding the DOOM command system via `SPC`
+* ✅ **Mental Model Building:** Developing a coherent understanding of how DOOM operates
 
-*   **Interactive Challenges:** Learn by *doing*, not just reading.
-*   **Immediate Feedback:** Understand instantly if you did something right or wrong.
-*   **Targeted Practice:** Focus on the most crucial initial bindings and concepts.
-*   **Gamified Motivation:** Making practice feel less like a chore and more like progress.
+**Learning Features:**
 
-## Installation (Requires DOOM Emacs)
+* ✅ **Progressive Challenges:** 18 carefully sequenced challenges with increasing complexity
+* ✅ **Immediate Feedback:** Visual cues and detailed messages for correct/incorrect actions
+* ✅ **Hint System:** Optional hints when you're stuck, with contextual explanations
+* ✅ **Progress Tracking:** Visual progress bar and challenge completion statistics
+* ✅ **Performance Analytics:** Track your improvement and identify areas for practice
 
-1.  **Clone the Repository:**
-    Clone this repository into your DOOM Emacs private modules directory. The standard location is `~/.doom.d/modules/private/` or `~/.config/doom/modules/private/`.
+## Installation
 
-    ```bash
-    # Example using the default ~/.doom.d location
-    cd ~/.doom.d/modules/private/
-    git clone https://github.com/your-username/doom-chronicles.git learning-game # Or choose your preferred dir name
-    ```
-    *(Replace `your-username` with your actual GitHub username)*
+1. **Clone the Repository:**
+   ```bash
+   # Using the default ~/.doom.d location
+   cd ~/.doom.d/modules/private/
+   git clone https://github.com/kaladinb4/doom-chronicles.git learning-game
+   ```
 
-2.  **Enable the Module in `config.el`:**
-    Add the following `use-package!` block to your `~/.doom.d/config.el` (or `~/.config/doom/config.el`):
+2. **Enable in your `config.el`:**
+   ```elisp
+   ;; In ~/.doom.d/config.el or ~/.config/doom/config.el
+   (use-package! doom-chronicles
+     :load-path "~/.doom.d/modules/private/learning-game/"
+     :commands (doom-chronicles-start))
+   ```
 
-    ```elisp
-    ;; In ~/.doom.d/config.el or ~/.config/doom/config.el
+3. **Sync DOOM:**
+   ```bash
+   ~/.emacs.d/bin/doom sync
+   ```
 
-    (use-package! doom-chronicles
-      ;; If you cloned into a different subdirectory name, update the path:
-      :load-path "~/.doom.d/modules/private/learning-game/" 
-      :commands (doom-chronicles-start))
-    ```
-    *(Adjust `:load-path` if you named the cloned directory differently or used `~/.config/doom`)*
-
-3.  **Sync DOOM:**
-    Run `doom sync` from your command line:
-    ```bash
-    # If using default ~/.emacs.d location for DOOM
-    ~/.emacs.d/bin/doom sync
-
-    # If using ~/.config/emacs location for DOOM
-    ~/.config/emacs/bin/doom sync
-    ```
-
-4.  **Restart Emacs:**
-    Close and reopen Emacs completely.
+4. **Restart Emacs**
 
 ## Usage
 
-1.  Start Emacs.
-2.  Press `SPC :` (or `M-x`).
-3.  Type `doom-chronicles-start` and press `Enter`.
-4.  A new buffer named `*Doom Chronicles*` will appear, presenting your first challenge!
-5.  Follow the prompts. Pay attention to the mode line indicator and feedback messages.
+1. Press `SPC :` (or `M-x`) and type `doom-chronicles-start`
+2. Follow the on-screen instructions for each challenge
+3. Use `C-c d h` to show hints when you're stuck
+4. Use `C-c d s` to view your progress statistics
 
-## Features (Phase 1)
+### Keyboard Shortcuts
 
-*   **Interactive Minor Mode (`doom-chronicles-mode`):** A dedicated environment for learning.
-*   **Real-time Command Validation:** Checks if you pressed the key(s) required by the current challenge.
-*   **Clear Feedback:** Visual (overlays) and textual (messages) feedback for correct/incorrect actions.
-*   **Prominent Mode Indicator:** Helps combat modal confusion.
-*   **Simple Challenge Progression:** Linear sequence of basic tasks.
-*   **Minimal Persistence:** Remembers which challenge you were on (`doom-chronicles-progress.el`).
+While in Doom Chronicles mode:
+- `C-c d n` - Next challenge
+- `C-c d p` - Previous challenge
+- `C-c d r` - Retry current challenge
+- `C-c d h` - Show hint
+- `C-c d q` - Quit tutorial
+- `C-c d s` - Show statistics
 
-## Roadmap (Future Phases)
+## Roadmap
 
-*   **Phase 2: Expanding Horizons:** Buffers, windows, files, basic Org mode, progress visualization, SRS data capture.
-*   **Phase 3: Core Tooling & Config:** Magit basics, NixOS/DOOM config intro, active SRS reviews.
-*   **Phase 4: Mastery & Ecosystem:** Advanced topics (Org-roam, Org-babel, Nix dev env), polish, full gamification (achievements, skill trees).
+### Phase 2: Buffer Mastery
+- Buffer management (`SPC b` commands)
+- Window manipulation (`SPC w` commands)
+- Project navigation (`SPC p` commands)
+- File operations (`SPC f` commands)
+
+### Phase 3: Text Mastery
+- Advanced movement with text objects
+- Enhanced selection techniques
+- Registers and marks
+- Macro recording and playback
+
+### Phase 4: Knowledge Systems
+- Org-mode fundamentals
+- Note-taking workflows
+- Task management
+- Knowledge organization
+
+### Phase 5: Development Environment
+- Version control with Magit
+- Completion systems
+- Project management
+- Language-specific workflows
+
+## Customization
+
+You can customize Doom Chronicles through the Emacs customization interface:
+```elisp
+M-x customize-group RET doom-chronicles RET
+```
+
+Available options include:
+- `doom-chronicles-use-animations` - Enable/disable animated feedback
+- `doom-chronicles-show-hints-automatically` - Show hints after repeated failures
+- `doom-chronicles-hint-delay` - Number of attempts before showing automatic hints
 
 ## Debugging
 
 If you encounter issues:
 
-1.  Check the `*Messages*` buffer (`SPC b b *Messages* RET`) for errors.
-2.  Ensure you ran `doom sync` and restarted Emacs after installation/updates.
-3.  Try `M-x toggle-debug-on-error` before running the game to get a backtrace if an error occurs.
-4.  Feel free to open an issue on GitHub!
+1. Check the `*Messages*` buffer for errors
+2. Ensure you ran `doom sync` after installation
+3. Try `M-x toggle-debug-on-error` before running the tutorial
+4. Make sure all required packages are installed (evil, which-key)
 
 ## Contributing
 
-Contributions are very welcome, but please note this is in **early alpha**. Wait for Phase 2 or 3 for more structured contribution opportunities, or open an issue first to discuss ideas for Phase 1 improvements.
+Contributions are welcome! Before submitting pull requests:
+
+1. Ensure your code follows the existing style
+2. Add comments for non-trivial code
+3. Update documentation as needed
+4. Test your changes thoroughly
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
-*   Inspired by the need for more engaging ways to learn powerful tools.
-*   Built upon the amazing foundation of Emacs and DOOM Emacs.
-*   (Add other inspirations or contributors here later)
+- Built on the excellent foundation of DOOM Emacs
+- Inspired by gamification and cognitive science research
+- Thanks to the DOOM Emacs community for feedback and suggestions
