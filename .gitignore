@@ -1,0 +1,29 @@
+# Emacs backup files
+*~
+#*#
+
+# Emacs compiled Lisp files
+*.elc
+
+# Emacs lock files
+.~*.el
+
+# User-specific progress file for Doom Chronicles
+doom-chronicles-progress.el
+
+# DOOM Emacs local data and cache
+.local/
+*.local.*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Dependency directories (if any were added later)
+# node_modules/
+# vendor/
+
+# Personal Emacs configuration backups/files (if they somehow end up here)
+*_flymake.el
+*_auctex-auto/
+*ftp-log*
