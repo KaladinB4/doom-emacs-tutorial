@@ -68,7 +68,7 @@ This release contains **Phase 1** of Doom Chronicles, focused on building core m
    ```bash
    # Using the default ~/.doom.d location
    cd ~/.doom.d/modules/private/
-   git clone https://github.com/kaladinb4/doom-chronicles.git learning-game
+   git clone https://github.com/kaladinb4/doom-emacs-tutorial.git learning-game
    ```
 
 2. **Enable in your `config.el`:**
