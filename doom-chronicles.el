@@ -168,78 +168,78 @@
   "Set up challenges for Phase 1: The Spark."
   (setq doom-chronicles--challenges
         '(;; 1. Basic Movement Down
-          {:prompt "Welcome, Apprentice! The Text Dimension awaits. Move the cursor DOWN 3 times. Press 'j' three times."
+          (:prompt "Welcome, Apprentice! The Text Dimension awaits. Move the cursor DOWN 3 times. Press 'j' three times."
            :goal-keys ("j" "j" "j")
            :success "Excellent! You feel the flow of text."
            :hint "In DOOM Emacs, navigation is primarily done using the h, j, k, l keys (←↓↑→)."
            :explanation "The 'j' key moves down in normal mode, inspired by vi/vim."
            :difficulty 1
-           :setup (lambda () (goto-char (point-min)))}
+           :setup (lambda () (goto-char (point-min))))
 
          ;; 2. Basic Movement Up
-         {:prompt "Now, return UP 2 times. Press 'k' twice."
+         (:prompt "Now, return UP 2 times. Press 'k' twice."
           :goal-keys ("k" "k")
           :success "Precise control!"
           :hint "The 'k' key moves your cursor up in normal mode."
           :explanation "The 'k' key moves up, continuing the h, j, k, l navigation scheme."
           :difficulty 1
-          :setup (lambda () (goto-char (+ (point-min) 40)))} ; Ensure cursor isn't at top
+          :setup (lambda () (goto-char (+ (point-min) 40)))) ; Ensure cursor isn't at top
 
          ;; 3. Basic Movement Left/Right
-         {:prompt "Let's practice horizontal movement. Press 'h' twice to move LEFT, then 'l' three times to move RIGHT."
+         (:prompt "Let's practice horizontal movement. Press 'h' twice to move LEFT, then 'l' three times to move RIGHT."
           :goal-keys ("h" "h" "l" "l" "l")
           :success "Smooth navigation! You're getting the hang of movement."
           :hint "The 'h' key moves left, and 'l' key moves right in normal mode."
           :explanation "The h and l keys complete the basic movement keys in DOOM/Vim."
           :difficulty 1
           :setup (lambda () (insert "      Test text for horizontal movement      ")
-                             (goto-char (+ (point-min) 20)))}
+                             (goto-char (+ (point-min) 20))))
 
          ;; 4. Enter Insert Mode
-         {:prompt "Time to shape the void. Enter INSERT mode. Press 'i'."
+         (:prompt "Time to shape the void. Enter INSERT mode. Press 'i'."
           :goal-keys ("i")
           :success "You are now in INSERT mode! Notice the mode line change."
           :hint "The 'i' key enters insert mode, allowing you to type text."
           :explanation "Insert mode is where you can type text normally, like in most editors."
-          :difficulty 1}
+          :difficulty 1)
 
          ;; 5. Type Text & Exit Insert Mode
-         {:prompt "In INSERT mode, type the word 'hello'. Then return to NORMAL mode (press ESC or 'f' then 'd')."
+         (:prompt "In INSERT mode, type the word 'hello'. Then return to NORMAL mode (press ESC or 'f' then 'd')."
           :goal-keys ("h" "e" "l" "l" "o" "ESC") ; We'll handle fd alternative later
           :success "Text manifested! And you're safely back in NORMAL mode."
           :hint "Type each letter of 'hello', then press ESC (or fd quickly) to return to normal mode."
           :explanation "The escape key returns you to normal mode from insert mode."
           :difficulty 2
-          :setup (lambda () (insert " "))} ; Ensure space after cursor
+          :setup (lambda () (insert " "))) ; Ensure space after cursor
 
          ;; 6. Delete Character
-         {:prompt "An anomaly! Delete the character under the cursor. Press 'x'."
+         (:prompt "An anomaly! Delete the character under the cursor. Press 'x'."
           :goal-keys ("x")
           :success "Anomaly neutralized!"
           :hint "The 'x' key in normal mode deletes the character under the cursor."
           :explanation "The 'x' key is a quick way to delete a single character."
           :difficulty 1
-          :setup (lambda () (insert "X") (backward-char))}
+          :setup (lambda () (insert "X") (backward-char)))
 
          ;; 7. Delete Line
-         {:prompt "This entire line is redundant. Delete it. Press 'd' twice ('dd')."
+         (:prompt "This entire line is redundant. Delete it. Press 'd' twice ('dd')."
           :goal-keys ("d" "d")
           :success "Line banished!"
           :hint "The 'dd' sequence in normal mode deletes the entire current line."
           :explanation "The 'd' key is a powerful deletion command that works with motions or itself."
           :difficulty 2
-          :setup (lambda () (goto-char (line-beginning-position)))}
+          :setup (lambda () (goto-char (line-beginning-position))))
 
          ;; 8. Undo
-         {:prompt "Wait, perhaps that was hasty. Undo the last action. Press 'u'."
+         (:prompt "Wait, perhaps that was hasty. Undo the last action. Press 'u'."
           :goal-keys ("u")
           :success "Reality restored! Undo is powerful."
           :hint "The 'u' key in normal mode undoes the last action."
           :explanation "Undo is crucial for recovering from mistakes."
-          :difficulty 1}
+          :difficulty 1)
 
          ;; 9. Word Movement
-         {:prompt "Let's move by words now. Press 'w' three times to move forward by words."
+         (:prompt "Let's move by words now. Press 'w' three times to move forward by words."
           :goal-keys ("w" "w" "w")
           :success "Leaping across words! Much faster than character movement."
           :hint "The 'w' key in normal mode jumps to the start of the next word."
@@ -247,26 +247,26 @@
           :difficulty 2
           :setup (lambda () (insert "\nThis is a sentence with multiple words to practice word movement.\n")
                             (goto-char (point-max))
-                            (search-backward "This" nil t))}
+                            (search-backward "This" nil t)))
 
          ;; 10. Back Word Movement
-         {:prompt "Now move backwards by words. Press 'b' twice to jump back."
+         (:prompt "Now move backwards by words. Press 'b' twice to jump back."
           :goal-keys ("b" "b")
           :success "Backwards mastery! You're becoming efficient."
           :hint "The 'b' key in normal mode jumps back to the start of the previous word."
           :explanation "Combining 'w' and 'b' lets you navigate text quickly."
-          :difficulty 2}
+          :difficulty 2)
 
          ;; 11. End of Word Movement
-         {:prompt "Let's jump to the end of words. Press 'e' twice."
+         (:prompt "Let's jump to the end of words. Press 'e' twice."
           :goal-keys ("e" "e")
           :success "Precise ending! You can target the end of words."
           :hint "The 'e' key jumps to the end of the current or next word."
           :explanation "The 'e' key complements 'w' by targeting word endings."
-          :difficulty 2}
+          :difficulty 2)
 
          ;; 12. Beginning/End of Line
-         {:prompt "Jump to the beginning of line with '0', then to the end with '$'."
+         (:prompt "Jump to the beginning of line with '0', then to the end with '$'."
           :goal-keys ("0" "$")
           :success "Line mastery! You can now target entire lines efficiently."
           :hint "The '0' key jumps to the start of a line, '$' to the end."
@@ -275,18 +275,18 @@
           :setup (lambda () (insert "\nThis is a long line that you can use to practice jumping to the beginning and end.\n")
                             (goto-char (point-max))
                             (search-backward "This is a long" nil t)
-                            (forward-char 5))}
+                            (forward-char 5)))
 
          ;; 13. Visual Mode
-         {:prompt "Enter VISUAL mode to select text. Press 'v'."
+         (:prompt "Enter VISUAL mode to select text. Press 'v'."
           :goal-keys ("v")
           :success "You've entered VISUAL mode! Notice the mode indicator change."
           :hint "The 'v' key enters character-wise visual selection mode."
           :explanation "Visual mode lets you select text before operating on it."
-          :difficulty 2}
+          :difficulty 2)
 
          ;; 14. Visual Selection
-         {:prompt "In VISUAL mode, extend your selection by pressing 'e' to select to the end of a word."
+         (:prompt "In VISUAL mode, extend your selection by pressing 'e' to select to the end of a word."
           :goal-keys ("e")
           :success "Selection extended! Visual feedback shows what you're targeting."
           :hint "Use motion commands like 'e' to extend your visual selection."
@@ -294,39 +294,39 @@
           :difficulty 2
           :setup (lambda () (evil-visual-char) (insert "\nSelect this text using visual mode commands.\n")
                             (goto-char (point-max))
-                            (search-backward "Select" nil t))}
+                            (search-backward "Select" nil t)))
 
          ;; 15. Press SPC for Leader Menu
-         {:prompt "The SPACE bar holds many secrets in DOOM. Press 'SPC' to open the leader key menu."
+         (:prompt "The SPACE bar holds many secrets in DOOM. Press 'SPC' to open the leader key menu."
           :goal-keys ("SPC")
           :success "Behold! The which-key menu reveals all the power of DOOM Emacs! Press ESC to close it for now."
           :hint "Simply press the spacebar while in normal mode."
           :explanation "The leader key (SPC) is how you access most of DOOM's commands."
           :difficulty 1
-          :teardown (lambda () (message "Press ESC to dismiss which-key if it's still open."))}
+          :teardown (lambda () (message "Press ESC to dismiss which-key if it's still open.")))
 
          ;; 16. Find File via Leader
-         {:prompt "Try opening the leader menu again with SPC, then press 'f' to see file commands, then press 'ESC' to cancel."
+         (:prompt "Try opening the leader menu again with SPC, then press 'f' to see file commands, then press 'ESC' to cancel."
           :goal-keys ("SPC" "f" "ESC")
           :success "Explorer revealed! You've discovered the file navigation menu."
           :hint "Press SPC to open the leader menu, then 'f' for the file submenu."
           :explanation "The leader key menus are organized by category - 'f' is for file operations."
-          :difficulty 2}
+          :difficulty 2)
 
          ;; 17. Buffer Menu
-         {:prompt "Access the buffer menu by pressing 'SPC' then 'b', then press 'ESC' to cancel."
+         (:prompt "Access the buffer menu by pressing 'SPC' then 'b', then press 'ESC' to cancel."
           :goal-keys ("SPC" "b" "ESC")
           :success "Buffer mastery begins! You can manage your open files from here."
           :hint "Press SPC to open the leader menu, then 'b' for buffer operations."
           :explanation "Buffers are Emacs' way of managing open files and content."
-          :difficulty 2}
+          :difficulty 2)
 
          ;; 18. End of Phase 1
-         {:prompt "You've grasped the basics, Apprentice! Phase 1 complete. You now understand modal editing, basic movement, and the leader key system."
+         (:prompt "You've grasped the basics, Apprentice! Phase 1 complete. You now understand modal editing, basic movement, and the leader key system."
           :goal-keys () ; No keys needed
           :success "You feel a surge of potential! You're ready to continue your journey."
           :explanation "You've completed the foundation of DOOM Emacs mastery."
-          :difficulty 1}
+          :difficulty 1)
           )))
 
 ;;----------------------------------------------------------------------------
